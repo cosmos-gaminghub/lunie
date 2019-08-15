@@ -21,42 +21,13 @@
 import { messageType } from "./messageTypes.js"
 import TransactionMetadata from "./TransactionMetadata"
 
-import {
-  SendMessageDetails,
-  DelegateMessageDetails,
-  DepositMessageDetails,
-  EditValidatorMessageDetails,
-  SubmitProposalMessageDetails,
-  UndelegateMessageDetails,
-  UnjailMessageDetails,
-  CreateValidatorMessageDetails,
-  VoteMessageDetails,
-  BeginRedelegateMessageDetails,
-  SetWithdrawAddressMessageDetails,
-  WithdrawDelegationRewardMessageDetails,
-  WithdrawValidatorCommissionMessageDetails
-} from "./message-view"
-
 import Bech32 from "common/Bech32"
 
 export default {
   name: `transaction-details`,
   components: {
     TransactionMetadata,
-    Bech32,
-    SendMessageDetails,
-    DelegateMessageDetails,
-    DepositMessageDetails,
-    EditValidatorMessageDetails,
-    SubmitProposalMessageDetails,
-    UndelegateMessageDetails,
-    UnjailMessageDetails,
-    CreateValidatorMessageDetails,
-    VoteMessageDetails,
-    BeginRedelegateMessageDetails,
-    SetWithdrawAddressMessageDetails,
-    WithdrawDelegationRewardMessageDetails,
-    WithdrawValidatorCommissionMessageDetails
+    Bech32
   },
   props: {
     transaction: {
@@ -79,34 +50,35 @@ export default {
   },
   computed: {
     messageTypeComponent: function() {
-      // TODO Could improve this using dynamic loading.
       switch (this.transaction.type) {
         case messageType.SEND:
-          return `send-message-details`
+          return () => import("./message-view/SendMessageDetails")
         case messageType.DELEGATE:
-          return `delegate-message-details`
+          return () => import("./message-view/DelegateMessageDetails")
         case messageType.CREATE_VALIDATOR:
-          return `create-validator-message-details`
+          return () => import("./message-view/CreateValidatorMessageDetails")
         case messageType.EDIT_VALIDATOR:
-          return `edit-validator-message-details`
+          return () => import("./message-view/EditValidatorMessageDetails")
         case messageType.UNDELEGATE:
-          return `undelegate-message-details`
+          return () => import("./message-view/UndelegateMessageDetails")
         case messageType.BEGIN_REDELEGATE:
-          return `begin-redelegate-message-details`
+          return () => import("./message-view/BeginRedelegateMessageDetails")
         case messageType.UNJAIL:
-          return `unjail-message-details`
+          return () => import("./message-view/UnjailMessageDetails")
         case messageType.SUBMIT_PROPOSAL:
-          return `submit-proposal-message-details`
+          return () => import("./message-view/SubmitProposalMessageDetails")
         case messageType.DEPOSIT:
-          return `deposit-message-details`
+          return () => import("./message-view/DepositMessageDetails")
         case messageType.VOTE:
-          return `vote-message-details`
+          return () => import("./message-view/VoteMessageDetails")
         case messageType.SET_WITHDRAW_ADDRESS:
-          return `set-withdraw-address-message-details`
+          return () => import("./message-view/SetWithdrawAddressMessageDetails")
         case messageType.WITHDRAW_DELEGATION_REWARD:
-          return `withdraw-delegation-reward-message-details`
+          return () =>
+            import("./message-view/WithdrawDelegationRewardMessageDetails")
         case messageType.WITHDRAW_VALIDATOR_COMMISSION:
-          return `withdraw-validator-commission-message-details`
+          return () =>
+            import("./message-view/WithdrawValidatorCommissionMessageDetails")
         default:
           return ``
       }
