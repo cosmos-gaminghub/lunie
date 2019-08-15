@@ -7,5 +7,10 @@ module.exports = {
       }
     ]
   ],
-  plugins: [["@babel/transform-runtime"]]
+  plugins: [["@babel/transform-runtime"]],
+  env: {
+    test: {
+      plugins: ["dynamic-import-node"]
+    }
+  }
 }

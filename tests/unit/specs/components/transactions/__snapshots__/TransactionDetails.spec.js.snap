@@ -40,50 +40,7 @@ exports[`TransactionDetails renders MsgBeginRedelegate transaction item 1`] = `
 <div
   class="tx__content"
 >
-  <div
-    class="tx__content__left"
-    session-address="cosmos1"
-  >
-    <div
-      class="tx__content__caption"
-    >
-      <p>
-        
-      Redelegated
-      
-        <b>
-          0.01
-        </b>
-         
-        <span>
-          ATOM
-        </span>
-      </p>
-    </div>
-     
-    <div
-      class="tx__content__information"
-    >
-      
-    From 
-    
-      <router-link-stub
-        to="staking/validators/cosmosvaloper1sjllsnasdmasakjshdlkdhjasldnasd"
-      >
-        
-      cosmosvaloper…nasd 
-      </router-link-stub>
-      To 
-    
-      <router-link-stub
-        to="staking/validators/cosmosvaloper1uaisjdnidjnlaskjdnlkjasndlkadjn"
-      >
-        
-      cosmosvaloper…adjn
-    
-      </router-link-stub>
-    </div>
-  </div>
+  <!---->
    
   <div
     class="tx__content__right"
@@ -119,35 +76,7 @@ exports[`TransactionDetails renders MsgCreateValidator transaction item 1`] = `
 <div
   class="tx__content"
 >
-  <div
-    class="tx__content__left"
-    session-address="cosmos1"
-  >
-    <div
-      class="tx__content__caption"
-    >
-      <p>
-        
-      Create validator
-    
-      </p>
-    </div>
-     
-    <div
-      class="tx__content__information"
-    >
-      
-    Monikor 
-    
-      <router-link-stub
-        to="staking/validators/cosmos1alkjdbasdlkhasldjnasldkjasndlkjansdlasndlkj"
-      >
-        
-      cosmos…dlkj
-    
-      </router-link-stub>
-    </div>
-  </div>
+  <!---->
    
   <div
     class="tx__content__right"
@@ -183,44 +112,7 @@ exports[`TransactionDetails renders MsgDelegate transaction item 1`] = `
 <div
   class="tx__content"
 >
-  <div
-    class="tx__content__left"
-    session-address="cosmos1"
-  >
-    <div
-      class="tx__content__caption"
-    >
-      <p
-        class="tx__content__caption__title"
-      >
-        
-      Delegated
-      
-        <b>
-          0.05
-        </b>
-         
-        <span>
-          ATOM
-        </span>
-      </p>
-    </div>
-     
-    <div
-      class="tx__content__information"
-    >
-      
-    To 
-    
-      <router-link-stub
-        to="staking/validators/cosmosvaloper1uaisjdnidjnlaskjdnlkjasndlkadjn"
-      >
-        
-      cosmosvaloper…adjn
-    
-      </router-link-stub>
-    </div>
-  </div>
+  <!---->
    
   <div
     class="tx__content__right"
@@ -256,42 +148,7 @@ exports[`TransactionDetails renders MsgDeposit transaction item 1`] = `
 <div
   class="tx__content"
 >
-  <div
-    class="tx__content__left"
-    session-address="cosmos1"
-  >
-    <div
-      class="tx__content__caption"
-    >
-      <p
-        class="tx__content__caption__title"
-      >
-        
-      Deposited
-      
-        <b>
-          0.2345
-        </b>
-         
-        <span>
-          ATOM
-        </span>
-      </p>
-    </div>
-     
-    <div
-      class="tx__content__information"
-    >
-      
-    On
-    
-      <router-link-stub
-        to="/governance/2"
-      >
-        Proposal #2
-      </router-link-stub>
-    </div>
-  </div>
+  <!---->
    
   <div
     class="tx__content__right"
@@ -327,33 +184,7 @@ exports[`TransactionDetails renders MsgEditValidator transaction item 1`] = `
 <div
   class="tx__content"
 >
-  <div
-    class="tx__content__left"
-    session-address="cosmos1"
-  >
-    <div
-      class="tx__content__caption"
-    >
-      <p>
-        Edit validator
-      </p>
-    </div>
-     
-    <div
-      class="tx__content__information"
-    >
-      
-    Monikor 
-    
-      <router-link-stub
-        to="staking/validators/cosmos1alkjdbasdlkhasldjnasldkjasndlkjansdlasndlkj"
-      >
-        
-      cosmos…dlkj
-    
-      </router-link-stub>
-    </div>
-  </div>
+  <!---->
    
   <div
     class="tx__content__right"
@@ -389,64 +220,7 @@ exports[`TransactionDetails renders MsgSend transaction item from other to you 1
 <div
   class="tx__content"
 >
-  <div
-    class="tx__content__left"
-    validators="[object Object]"
-  >
-    <div
-      class="tx__content__caption"
-    >
-      <p>
-        
-      Received
-      
-        <b>
-           0.2345
-        </b>
-         
-        <span>
-           ATOM
-        </span>
-      </p>
-    </div>
-     
-    <div
-      class="tx__content__information"
-    >
-      
-      From 
-      
-      <div
-        class="bech32-address"
-      >
-        <div
-          class="address"
-          id="address"
-        >
-          
-    cosmos…1212
-  
-        </div>
-         
-        <div
-          class="copied"
-        >
-          <i
-            class="material-icons"
-          >
-            check
-          </i>
-          <span>
-            Copied
-          </span>
-        </div>
-      </div>
-       
-      <span>
-         - (Sent via Lunie)
-      </span>
-    </div>
-  </div>
+  <!---->
    
   <div
     class="tx__content__right"
@@ -482,64 +256,7 @@ exports[`TransactionDetails renders MsgSend transaction item from session user t
 <div
   class="tx__content"
 >
-  <div
-    class="tx__content__left"
-    validators="[object Object]"
-  >
-    <div
-      class="tx__content__caption"
-    >
-      <p>
-        
-      Sent
-      
-        <b>
-           0.2345
-        </b>
-         
-        <span>
-           ATOM
-        </span>
-      </p>
-    </div>
-     
-    <div
-      class="tx__content__information"
-    >
-      
-      To 
-      
-      <div
-        class="bech32-address"
-      >
-        <div
-          class="address"
-          id="address"
-        >
-          
-    cosmos…sdas
-  
-        </div>
-         
-        <div
-          class="copied"
-        >
-          <i
-            class="material-icons"
-          >
-            check
-          </i>
-          <span>
-            Copied
-          </span>
-        </div>
-      </div>
-       
-      <span>
-         - (Sent via Lunie)
-      </span>
-    </div>
-  </div>
+  <!---->
    
   <div
     class="tx__content__right"
@@ -575,36 +292,7 @@ exports[`TransactionDetails renders MsgSend transaction item to yourself 1`] = `
 <div
   class="tx__content"
 >
-  <div
-    class="tx__content__left"
-    validators="[object Object]"
-  >
-    <div
-      class="tx__content__caption"
-    >
-      <p>
-        
-      Sent
-      
-        <b>
-           0.2345
-        </b>
-         
-        <span>
-           ATOM
-        </span>
-      </p>
-    </div>
-     
-    <div
-      class="tx__content__information"
-    >
-      To yourself! 
-      <span>
-         - (Sent via Lunie)
-      </span>
-    </div>
-  </div>
+  <!---->
    
   <div
     class="tx__content__right"
@@ -760,26 +448,7 @@ exports[`TransactionDetails renders MsgSetWithdrawAddress transaction item 1`] =
 <div
   class="tx__content"
 >
-  <div
-    class="tx__content__left"
-    session-address="cosmos1"
-  >
-    <div
-      class="tx__content__caption"
-    >
-      <p>
-        Update withdraw address
-      </p>
-    </div>
-     
-    <div
-      class="tx__content__information"
-    >
-      
-    To cosmos1alkjdbasdlkhasldjnasldkjasndlkjansdlasndlkj
-  
-    </div>
-  </div>
+  <!---->
    
   <div
     class="tx__content__right"
@@ -815,31 +484,7 @@ exports[`TransactionDetails renders MsgSetWithdrawValidatorCommission transactio
 <div
   class="tx__content"
 >
-  <div
-    class="tx__content__left"
-    session-address="cosmos1"
-  >
-    <div
-      class="tx__content__caption"
-    >
-      <p>
-        Withdraw validator commission
-      </p>
-    </div>
-     
-    <div
-      class="tx__content__information"
-    >
-      
-    From 
-    
-      <router-link-stub
-        to="staking/validators/cosmos1alkjdbasdlkhasldjnasldkjasndlkjansdlasndlkj"
-      >
-        cosmos…dlkj
-      </router-link-stub>
-    </div>
-  </div>
+  <!---->
    
   <div
     class="tx__content__right"
@@ -875,38 +520,7 @@ exports[`TransactionDetails renders MsgSubmitProposal transaction item 1`] = `
 <div
   class="tx__content"
 >
-  <div
-    class="tx__content__left"
-    session-address="cosmos1"
-  >
-    <div
-      class="tx__content__caption"
-    >
-      <p>
-        
-      Submitted text proposal
-      
-        <b>
-          0.2
-        </b>
-         
-        <span>
-          ATOM
-        </span>
-      </p>
-    </div>
-     
-    <div
-      class="tx__content__information"
-    >
-      
-    Title
-    
-      <i>
-        Test title
-      </i>
-    </div>
-  </div>
+  <!---->
    
   <div
     class="tx__content__right"
@@ -942,50 +556,7 @@ exports[`TransactionDetails renders MsgUndelegate transaction item 1`] = `
 <div
   class="tx__content"
 >
-  <div
-    class="tx__content__left"
-    session-address="cosmos1"
-  >
-    <div
-      class="tx__content__caption"
-    >
-      <p>
-        
-      Undelegated
-      
-        <b>
-          0.05
-        </b>
-         
-        <span>
-          ATOM
-        </span>
-         
-        <span
-          class="tx-unbonding__time-diff"
-        >
-          
-        (liquid in 50 years)
-      
-        </span>
-      </p>
-    </div>
-     
-    <div
-      class="tx__content__information"
-    >
-      
-    From 
-    
-      <router-link-stub
-        to="staking/validators/cosmosvaloper1lsajkdalskdjhasldkahsdljkalskdjhlaks"
-      >
-        
-      cosmosvaloper…laks
-    
-      </router-link-stub>
-    </div>
-  </div>
+  <!---->
    
   <div
     class="tx__content__right"
@@ -1021,31 +592,7 @@ exports[`TransactionDetails renders MsgUnjail transaction item 1`] = `
 <div
   class="tx__content"
 >
-  <div
-    class="tx__content__left"
-    session-address="cosmos1"
-  >
-    <div
-      class="tx__content__caption"
-    >
-      <p>
-        Unjail
-      </p>
-    </div>
-     
-    <div
-      class="tx__content__information"
-    >
-      
-    Moniker:
-    
-      <router-link-stub
-        to="staking/validators/cosmos1alkjdbasdlkhasldjnasldkjasndlkjansdlasndlkj"
-      >
-        cosmos…dlkj
-      </router-link-stub>
-    </div>
-  </div>
+  <!---->
    
   <div
     class="tx__content__right"
@@ -1081,31 +628,7 @@ exports[`TransactionDetails renders MsgVote transaction item 1`] = `
 <div
   class="tx__content"
 >
-  <div
-    class="tx__content__left"
-    session-address="cosmos1"
-  >
-    <div
-      class="tx__content__caption"
-    >
-      <p>
-        Voted NoWithVeto
-      </p>
-    </div>
-     
-    <div
-      class="tx__content__information"
-    >
-      
-    On 
-    
-      <router-link-stub
-        to="/governance/13"
-      >
-        Proposal #13
-      </router-link-stub>
-    </div>
-  </div>
+  <!---->
    
   <div
     class="tx__content__right"
@@ -1141,31 +664,7 @@ exports[`TransactionDetails renders MsgWithdrawDelegationReward transaction item
 <div
   class="tx__content"
 >
-  <div
-    class="tx__content__left"
-    session-address="cosmos1"
-  >
-    <div
-      class="tx__content__caption"
-    >
-      <p>
-        Withdrawal
-      </p>
-    </div>
-     
-    <div
-      class="tx__content__information"
-    >
-      
-    From 
-    
-      <router-link-stub
-        to="staking/validators/cosmosvaloper1sjllsnasdmasakjshdlkdhjasldnasdnadn"
-      >
-        cosmosvaloper…nadn
-      </router-link-stub>
-    </div>
-  </div>
+  <!---->
    
   <div
     class="tx__content__right"
