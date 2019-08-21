@@ -13,19 +13,20 @@ try {
     {
       key: process.env.BROWSERSTACK_ACCESS_KEY
     },
-    function(error) {
+    function (error) {
       if (error) throw error
 
       console.log("Connected. Now testing...")
-      Nightwatch.cli(function(argv) {
+      Nightwatch.cli(function (argv) {
         Nightwatch.CliRunner(argv)
-          .setup(null, function() {
+          .setup(null, function () {
             // Code to stop browserstack local after end of parallel test
-            bs_local.stop(function() {})
+            bs_local.stop(function () { })
           })
-          .runTests(function() {
+          .runTests(function (possibleError) {
+            console.log(possibleError)
             // Code to stop browserstack local after end of single test
-            bs_local.stop(function() {})
+            bs_local.stop(function () { })
           })
       })
     }
