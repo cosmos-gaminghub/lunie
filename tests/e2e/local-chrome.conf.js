@@ -1,11 +1,12 @@
 let chromedriver
-if (process.env.NODE_ENV === "CI") {
-  console.log("Loading Chromedriver version for CI Environment")
-  chromedriver = require("chromedriver")
-} else {
-  console.log("Loading latest Chromedriver for Local Testing")
-  chromedriver = require("chromedriver-latest")
-}
+// if (process.env.NODE_ENV === "CI") {
+//   console.log("Loading Chromedriver version for CI Environment")
+//   chromedriver = require("chromedriver")
+// } else {
+//   console.log("Loading latest Chromedriver for Local Testing")
+// }
+
+chromedriver = require("chromedriver-latest")
 
 const nightwatch_config = {
   src_folders: ["./tests/e2e/"],
