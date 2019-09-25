@@ -15,7 +15,7 @@
         <span
           :class="status | toLower"
           class="validator-status"
-          :title="status_detailed"
+          :title="validator.status_detailed"
         >
           {{ status }}
         </span>
@@ -91,19 +91,10 @@ export default {
   },
   computed: {
     status() {
-      if (
-        this.validator.jailed ||
-        this.validator.tombstoned ||
-        this.validator.status === 0
+      return (
+        this.validator.status.substr(0, 1).toUpperCase() +
+        this.validator.status.substr(1)
       )
-        return `Inactive`
-      return `Active`
-    },
-    status_detailed() {
-      if (this.validator.jailed) return `Temporally banned from the network`
-      if (this.validator.tombstoned) return `Banned from the network`
-      if (this.validator.status === 0) return `Banned from the network`
-      return false
     }
   },
   methods: {

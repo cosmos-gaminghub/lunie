@@ -14,7 +14,7 @@ export const expectedRewards = (
   annualProvision,
   delegatedTokens
 ) => {
-  if (validator.status === 0 || validator.jailed === true) {
+  if (validator.status === "inactive") {
     return 0
   }
   const delegatorProvisionShare = provisionShare(validator, totalStakedTokens)
