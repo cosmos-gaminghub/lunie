@@ -102,12 +102,6 @@
           </span>
         </li>
         <li>
-          <h4>Self Stake</h4>
-          <span id="page-profile__self-bond">
-            {{ selfBond }} / {{ selfBondAmount }}
-          </span>
-        </li>
-        <li>
           <h4>Validator Since</h4>
           <span>
             Block #{{
@@ -123,15 +117,15 @@
         </li>
         <li>
           <h4>Current Commission Rate</h4>
-          <span>{{ validator.rate | percent }}</span>
+          <span>{{ validator.commission | percent }}</span>
         </li>
         <li>
           <h4>Max Commission Rate</h4>
-          <span>{{ validator.max_rate | percent }}</span>
+          <span>{{ validator.max_commission_rate | percent }}</span>
         </li>
         <li>
           <h4>Max Daily Commission Change</h4>
-          <span>{{ validator.max_change_rate | percent }}</span>
+          <span>{{ validator.max_change_commission | percent }}</span>
         </li>
         <li>
           <h4>Last Commission Change</h4>
@@ -231,14 +225,6 @@ export default {
       `liquidAtoms`,
       `connected`
     ]),
-    selfBond() {
-      return percent(this.delegates.selfBond[this.validator.operator_address])
-    },
-    selfBondAmount() {
-      return shortDecimals(
-        uatoms(this.delegates.selfBond[this.validator.operator_address])
-      )
-    },
     myBond() {
       if (!this.validator) return 0
       return atoms(
@@ -255,7 +241,7 @@ export default {
       return Number(myBond) === 0 ? null : myDelegationString
     },
     lastCommissionChange() {
-      const updateTime = this.validator.update_time
+      const updateTime = this.validator.commission_last_update
       const dateTime = new Date(updateTime)
       const neverHappened = dateTime.getTime() === 0
 
