@@ -54,7 +54,7 @@ executors:
 
   testnet:
     docker:
-      - image: *docker-browsers
+      - image: lunieio/e2e-environment
       - name: hasura
         image: hasura/graphql-engine:v1.0.0-beta.6
         environment:
@@ -154,7 +154,9 @@ jobs:
       - run:
           name: Add database schema
           command: |
-            docker run --net="host" -v ${WORKSPACE}/lunie-backend/hasura-migrate:/etc -e HASURA_URL=http://hasura:8080 -e POSTGRES_URL=postgres lunieio/hasura-migration
+            cd lunie-backend/hasura-migrate
+            hasura migrate apply --endpoint http://hasura:8080
+            psql -h postgres -d postgres -U postgres -p 5432 -f ./networks.sql
       - run:
           name: install dependencies
           command: |
