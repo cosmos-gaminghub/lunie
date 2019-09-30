@@ -3,44 +3,44 @@
 import gql from "graphql-tag"
 
 export const schemaMap = {
-  cosmoshub: "",
+  cosmoshub: "cosmoshub_",
   [`gaia-testnet`]: "gaia_testnet_",
   testnet: "gaia_testnet_"
 }
 
 const ValidatorFragment = `
-    avatarUrl
-    consensus_pubkey
-    customized
-    delegator_shares
-    details
-    id
-    identity
-    jailed
-    tombstoned
-    keybaseId
-    lastUpdated
-    max_change_rate
-    max_rate
-    min_self_delegation
-    moniker
+  operator_address 
+  id 
+  consensus_address 
+  jailed 
+  details 
+  website 
+  identity 
+  moniker 
+  voting_power 
+  start_height 
+  uptime_percentage 
+  tokens 
+  update_time 
+  commission 
+  max_commission 
+  max_change_commission 
+  commission_last_update 
+  status 
+  status_detailed 
+`
+
+const ValidatorProfileFragment = `
     operator_address
-    profileUrl
-    rate
-    status
-    tokens
-    unbonding_height
-    unbonding_time
-    update_time
-    uptime_percentage
-    userName
-    voting_power
+    name
+    details
     website
+    picture
 `
 
 export const AllValidators = schema => gql`
   query AllValidators {
-    ${schemaMap[schema]}allValidators {
+    ${schemaMap[schema]}validators {
       ${ValidatorFragment}
     }
   }
@@ -48,33 +48,38 @@ export const AllValidators = schema => gql`
 
 export const ValidatorProfile = schema => gql`
   query ValidatorInfo($address: String) {
-    ${schemaMap[schema]}allValidators(where: { operator_address: { _eq: $address } }) {
+    ${schemaMap[schema]}validators(where: { operator_address: { _eq: $address } }) {
       ${ValidatorFragment}
+    }
+    ${schemaMap[schema]}validatorprofiles(where: { operator_address: { _eq: $address } }) {
+      ${ValidatorProfileFragment}
     }
   }
 `
 
 export const SomeValidators = schema => gql`
   query ValidatorInfo($addressList: [String!]) {
-    ${schemaMap[schema]}allValidators(where: { operator_address: { _in: $addressList } }) {
+    ${schemaMap[schema]}validators(where: { operator_address: { _in: $addressList } }) {
       ${ValidatorFragment}
     }
   }
 `
 
 export const AllValidatorsResult = schema => data =>
-  data[`${schemaMap[schema]}allValidators`]
+  data[`${schemaMap[schema]}validators`]
 
 export const ValidatorResult = schema => data =>
-  data[`${schemaMap[schema]}allValidators`][0]
+  Object.assign(
+    data[`${schemaMap[schema]}validators`][0],
+    data[`${schemaMap[schema]}validatorprofiles`][0]
+  )
 
 export const ValidatorByName = schema => active => gql`
   query ${schemaMap[schema]}ValidatorInfo($monikerName: String) {
-    ${schemaMap[schema]}allValidators(
+    ${schemaMap[schema]}validators(
       where: {
         moniker: { _ilike: $monikerName }
-        ${active ? "jailed: { _neq: true }" : ""}
-        ${active ? "status: { _neq: 0 }" : ""}
+        ${active ? 'status: { _neq: "inactive" }' : ""}
       }
     ) {
       ${ValidatorFragment}

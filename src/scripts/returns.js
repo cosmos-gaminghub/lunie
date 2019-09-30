@@ -1,7 +1,8 @@
 // share of all provisioned block rewards all delegators of this validator get
 export const provisionShare = (validator, totalStakedTokens) => {
   const validatorProvisionShare = validator.tokens / totalStakedTokens
-  const delegatorProvisionShare = validatorProvisionShare * (1 - validator.rate)
+  const delegatorProvisionShare =
+    validatorProvisionShare * (1 - validator.commission)
 
   return delegatorProvisionShare
 }
@@ -13,7 +14,7 @@ export const expectedRewards = (
   annualProvision,
   delegatedTokens
 ) => {
-  if (validator.status === 0 || validator.jailed === true) {
+  if (validator.status === "inactive") {
     return 0
   }
   const delegatorProvisionShare = provisionShare(validator, totalStakedTokens)
