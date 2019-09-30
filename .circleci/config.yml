@@ -154,19 +154,12 @@ jobs:
       - run:
           name: Add database schema
           command: |
-            cd lunie-backend/hasura-migrate
-            docker build --tag hasura-migration .
-            docker run -v ${WORKSPACE}:/etc/working hasura-migration
+            docker run --net="host" -v ${WORKSPACE}/lunie-backend/hasura-migrate:/etc -e HASURA_URL=http://hasura:8080 -e POSTGRES_URL=postgres lunieio/hasura-migration
       - run:
           name: install dependencies
           command: |
             cd lunie-backend
             npm install
-      - run:
-          name: Run crawlers
-          command: |
-            cd lunie-backend
-            npm run crawlers
       - run:
           # needs to be done in CI to be sure it is build once we start the tests
           name: Build for E2E test
