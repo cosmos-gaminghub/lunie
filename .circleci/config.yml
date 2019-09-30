@@ -52,6 +52,22 @@ executors:
       - image: *docker-node
     working_directory: *WORKSPACE
 
+  testnet:
+    docker:
+      - image: *docker-browsers
+      - name: hasura
+        image: hasura/graphql-engine:v1.0.0-beta.6
+        environment:
+          HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:@postgres:5432/postgres
+          HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
+          HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      - name: postgres
+        image: postgres:9.6.3
+      # Secondary container image on common network which runs the testnet
+      - name: testnet
+        image: lunieio/testnet:v0.34.3
+    working_directory: *WORKSPACE
+
 jobs:
   prep:
     executor: web
@@ -113,8 +129,7 @@ jobs:
             exit 0
 
   testE2e:
-    machine: true
-    working_directory: *WORKSPACE
+    executor: testnet
     steps:
       - attach_workspace:
           at: *WORKSPACE
@@ -134,33 +149,16 @@ jobs:
             git clone git@github.com:luniehq/lunie-backend.git
             cd lunie-backend
             git checkout origin/develop
-      - run: 
-          name: Use NVM
-          command: |
-            echo 'export NVM_DIR="/opt/circleci/.nvm"' >> $BASH_ENV
-            echo ' [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $BASH_ENV
-      - run:
-          name: Install node version
-          command: |
-            nvm install v10.13.0
-            nvm alias default v10.13.0
-      - run:
-          name: Install Chrome
-          command: |
-            wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-            sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-            sudo apt-get update
-            sudo apt-get -y install google-chrome-stable
       - run:
           name: install dependencies
           command: |
             cd lunie-backend
             npm install
       - run:
-          name: Run testnet
+          name: Run crawlers
           command: |
             cd lunie-backend
-            npm run stack -- -d
+            npm run crawlers -- -d
       - run:
           # needs to be done in CI to be sure it is build once we start the tests
           name: Build for E2E test
