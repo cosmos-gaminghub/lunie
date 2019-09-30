@@ -151,6 +151,12 @@ jobs:
             cd lunie-backend
             git checkout origin/develop
       - run:
+          name: Add database schema
+          command: |
+            cd lunie-backend/hasura-migrate
+            docker build --tag hasura-migration .
+            docker run -v ${WORKSPACE}:/etc/working hasura-migration
+      - run:
           name: install dependencies
           command: |
             cd lunie-backend
