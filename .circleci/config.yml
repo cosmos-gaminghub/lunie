@@ -132,6 +132,7 @@ jobs:
   testE2e:
     executor: testnet
     steps:
+      - setup_remote_docker
       - attach_workspace:
           at: *WORKSPACE
       - add_ssh_keys:
@@ -172,7 +173,7 @@ jobs:
           command: npm run test:e2e:build
       - run:
           name: Test
-          command: npm run serve:dist & npm run test:e2e:local
+          command: (cd lunie-backend && npm run crawlers) & npm run serve:dist & npm run test:e2e:local
           no_output_timeout: 120
       - store_artifacts:
           path: ./screenshots
