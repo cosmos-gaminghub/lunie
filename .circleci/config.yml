@@ -159,7 +159,7 @@ jobs:
           name: Run crawlers
           command: |
             cd lunie-backend
-            npm run crawlers -- -d
+            npm run crawlers
       - run:
           # needs to be done in CI to be sure it is build once we start the tests
           name: Build for E2E test
