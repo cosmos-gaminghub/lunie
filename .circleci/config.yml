@@ -155,7 +155,6 @@ jobs:
           name: Add database schema
           command: |
             cd lunie-backend/hasura-migrate
-            sleep 3s
             hasura migrate apply --endpoint http://hasura:8080
             psql -h postgres -d localhost -U postgres -p 5432 -f ./networks.sql
       - run:
