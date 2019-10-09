@@ -96,6 +96,19 @@ export const Networks = gql`
   }
 `
 
+export const DefaultNetwork = gql`
+  query DefaultNetwork {
+    networks(where: {default: {_eq: true}}, limit: 1) {
+      id
+      chain_id
+      logo_url
+      testnet
+      title
+      rpc_url
+    }
+  }
+`
+
 // capability is 'feature_portfolio' / 'action_send'
 export const NetworkCapability = (networkId, capability) => gql`
 query Networks {

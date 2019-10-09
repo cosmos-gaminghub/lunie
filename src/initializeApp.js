@@ -23,19 +23,16 @@ function setOptions(urlParams, store) {
   }
 }
 
-export default function init(urlParams, env = process.env) {
+export default async function init(urlParams, env = process.env) {
   // add error handlers in production
   if (env.NODE_ENV === `production`) {
     enableGoogleAnalytics(config.google_analytics_uid)
   }
 
-  const stargate = urlParams.stargate || config.stargate
-  console.log(`Expecting stargate at: ${stargate}`)
-
   const apolloProvider = createApolloProvider(urlParams)
   const apolloClient = apolloProvider.clients.defaultClient
 
-  const node = Node(stargate)
+  const node = Node("")
   const store = Store({ node, apollo: apolloClient })
 
   setGoogleAnalyticsPage(router.currentRoute.path)
@@ -48,15 +45,16 @@ export default function init(urlParams, env = process.env) {
   setOptions(urlParams, store)
 
   store.dispatch(`loadLocalPreferences`)
-  store
-    .dispatch(`connect`)
-    // wait for connected as the check for session will sign in directly and query account data
-    .then(() => {
-      store.dispatch(`checkForPersistedSession`)
-      store.dispatch("getDelegates")
-      store.dispatch(`getPool`)
-      store.dispatch(`getMintingParameters`)
-    })
+
+  // load a default network from the database
+  await store.dispatch("loadDefaultNetwork")
+  // wait for connected as the check for session will sign in directly and query account data
+  store.dispatch("connect").then(() => {
+    store.dispatch(`checkForPersistedSession`)
+    store.dispatch("getDelegates")
+    store.dispatch(`getPool`)
+    store.dispatch(`getMintingParameters`)
+  })
 
   listenToExtensionMessages(store)
 

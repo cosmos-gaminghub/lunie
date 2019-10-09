@@ -1,10 +1,11 @@
 import Vue from "vue"
 import config from "src/config"
+import { DefaultNetwork, NetworksResult } from "src/gql"
 
 const NODE_HALTED_TIMEOUT = config.node_halted_timeout
 const MAX_CONNECTION_ATTEMPTS = 5
 
-export default function({ node }) {
+export default function ({ node, apollo }) {
   // get tendermint RPC client from basecoin client
 
   const state = {
@@ -16,7 +17,6 @@ export default function({ node }) {
     },
     network: config.network, // network id to reference network capabilities stored in Hasura
     connectionAttempts: 0,
-    nodeUrl: config.stargate,
     rpcUrl: config.rpc,
     externals: {
       node,
@@ -41,7 +41,6 @@ export default function({ node }) {
       state.connectionAttempts = 0
     },
     setRpcUrl(state, rpcUrl) {
-      console.log(state.rpcUrl, rpcUrl)
       state.rpcUrl = rpcUrl
     },
     setNetworkId(state, networkId) {
@@ -129,13 +128,22 @@ export default function({ node }) {
         }
       }, nodeHaltedTimeout) // default 30s
     },
-    async setNetwork({ commit, dispatch }, network) {
+    async loadDefaultNetwork({ dispatch }) {
+      const { data } = await apollo.query({
+        query: DefaultNetwork
+      })
+      const defaultNetwork = NetworksResult(data)[0] // loads first network in list by id
+      dispatch("setNetwork", defaultNetwork)
+    },
+    async setNetwork({ state, commit, dispatch }, network) {
       commit("setNetworkId", network.id)
       commit("setRpcUrl", network.rpc_url)
-      dispatch("reconnect")
       console.info(
         `Connecting to: ${network.title} (${network.chain_id}) – ${network.rpc_url}`
       )
+      if (state.connected) {
+        dispatch("reconnect")
+      }
     }
   }
 
