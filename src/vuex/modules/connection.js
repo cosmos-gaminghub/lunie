@@ -15,6 +15,7 @@ export default function ({ node, apollo }) {
       height: 0,
       chain_id: ``
     },
+    nodeUrl: config.stargate,
     network: config.network, // network id to reference network capabilities stored in Hasura
     connectionAttempts: 0,
     rpcUrl: config.rpc,

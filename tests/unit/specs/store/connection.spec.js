@@ -303,7 +303,7 @@ describe(`Module: Connection`, () => {
     const dispatch = jest.fn()
     const commit = jest.fn()
     await actions.setNetwork(
-      { commit, dispatch },
+      { state, commit, dispatch },
       {
         id: "awesomenet",
         rpc_url: "https://localhost:1337"
@@ -311,6 +311,13 @@ describe(`Module: Connection`, () => {
     )
     expect(commit).toHaveBeenCalledWith("setNetworkId", "awesomenet")
     expect(commit).toHaveBeenCalledWith("setRpcUrl", "https://localhost:1337")
+  })
+
+  it("should reconnect after switching networks, if already connected", async () => {
+    const dispatch = jest.fn()
+    const commit = jest.fn()
+    state.connected = true
+    await actions.setNetwork({ state, commit, dispatch }, {})
     expect(dispatch).toHaveBeenCalledWith("reconnect")
   })
 })
