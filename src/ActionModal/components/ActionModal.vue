@@ -192,15 +192,15 @@
           </form>
         </div>
         <div v-else-if="step === inclusionStep" class="action-modal-form">
-          <TmDataMsg icon="hourglass_empty">
+          <TmDataMsg icon="hourglass_empty" spin="true">
             <div slot="title">
               Sent and confirming
             </div>
             <div slot="subtitle">
               The transaction
               <!-- with the hash {{ txHash }} -->
-              was successfully signed and sent the network. Waiting for it to be
-              confirmed.
+              was successfully signed and sent to the network. Waiting for
+              confirmation.
             </div>
           </TmDataMsg>
         </div>
@@ -208,7 +208,7 @@
           v-else-if="step === successStep"
           class="action-modal-form success-step"
         >
-          <TmDataMsg icon="check">
+          <TmDataMsg icon="check" iconColor="green">
             <div slot="title">
               {{ notifyMessage.title }}
             </div>
