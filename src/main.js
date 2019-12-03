@@ -17,6 +17,9 @@ import * as Sentry from "@sentry/browser"
 import * as Integrations from "@sentry/integrations"
 import "material-design-icons-iconfont/dist/material-design-icons.css"
 
+import VueApexCharts from "vue-apexcharts"
+Vue.component("apexchart", VueApexCharts)
+
 if (config.sentryDSN) {
   Sentry.init({
     dsn: config.sentryDSN,

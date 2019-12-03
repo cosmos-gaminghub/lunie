@@ -16,7 +16,7 @@
   --bright: hsl(0, 100%, 100%);
   --txt: hsl(0, 0%, 89%);
   --dim: rgb(175, 175, 175);
-  --bc: hsla(233, 24%, 75%, 0.175);
+  --bc: #afb3ce2d;
   --bc-dim: hsla(233, 24%, 75%, 0.0875);
   --app-fg: hsl(233, 36%, 18%);
   --app-fg-dark: hsl(233, 36%, 15%);
@@ -30,10 +30,10 @@
   --green: hsl(105, 60%, 44%, 1);
   --green-fade-1: hsla(105, 60%, 44%, 0.25);
   --green-fade-2: hsla(105, 60%, 44%, 0.15);
-  --orange: hsla(34, 100%, 50%, 1);
+  --orange: #ff9000;
   --orange-fade-1: hsla(34, 100%, 50%, 0.25);
   --orange-fade-2: hsla(34, 100%, 50%, 0.15);
-  --red: hsla(0, 100%, 40%, 1);
+  --red: #cc0000;
   --red-fade-1: hsla(0, 100%, 40%, 0.25);
   --red-fade-2: hsla(0, 100%, 40%, 0.15);
 

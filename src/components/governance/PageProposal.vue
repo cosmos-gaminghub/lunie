@@ -62,6 +62,8 @@
         </div>
       </div>
 
+      <apexchart type=donut width=300 :options="chartOptions" :series="votes" style="margin: 0 auto;" />
+
       <TextBlock :content="proposal.description" />
 
       <ul v-if="proposal.status === 'DepositPeriod'" class="row">
@@ -237,7 +239,28 @@ export default {
     parameters: {
       depositDenom: "TESTCOIN"
     },
-    error: undefined
+    error: undefined,
+    chartOptions: {
+      labels: ["Yes", "No", "Veto", "Abstain"],
+      colors: ['#4eb32c', '#cc0000', '#afb3ce2d', '#ff9000'],
+      legend: {
+        labels: {
+          colors: ['#2E93fA', '#66DA26', '#546E7A', '#E91E63'],
+          useSeriesColors: false
+        },
+        position: "bottom"
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200
+            }
+          }
+        }
+      ]
+    }
   }),
   computed: {
     ...mapGetters([`address`, `network`]),
@@ -255,6 +278,16 @@ export default {
     getPrevProposalId() {
       let id = this.getProposalIndex(1)
       return id
+    },
+    votes() {
+      let array = [
+        (this.proposal.tally.yes * 100) / this.proposal.tally.total,
+        (this.proposal.tally.no * 100) / this.proposal.tally.total,
+        (this.proposal.tally.veto * 100) / this.proposal.tally.total,
+        (this.proposal.tally.abstain * 100) / this.proposal.tally.total
+      ]
+      console.log(array)
+      return array
     }
   },
   methods: {
@@ -369,7 +402,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style>
 .proposal-title__row {
   color: var(--bright);
   display: flex;
@@ -419,6 +452,10 @@ export default {
 
 .button-container button:first-child {
   margin-right: 0.5rem;
+}
+
+.apexcharts-canvas {
+  margin: 2rem auto;
 }
 
 @media screen and (max-width: 667px) {
