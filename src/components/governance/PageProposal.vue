@@ -62,7 +62,7 @@
         </div>
       </div>
 
-      <apexchart type=donut width=300 :options="chartOptions" :series="votes" style="margin: 0 auto;" />
+      <apexchart type="donut" width="400" height="200" :options="chartOptions" :series="votes" />
 
       <TextBlock :content="proposal.description" />
 
@@ -241,6 +241,18 @@ export default {
     },
     error: undefined,
     chartOptions: {
+      title: {
+        text: "",
+        align: "center",
+        margin: 20,
+        offsetX: 100,
+        offsetY: 100,
+        floating: false,
+        style: {
+          fontSize: "16px",
+          color: "#ffffff"
+        }
+      },
       labels: ["Yes", "No", "Veto", "Abstain"],
       colors: ['#4eb32c', '#cc0000', '#afb3ce2d', '#ff9000'],
       legend: {
@@ -248,7 +260,7 @@ export default {
           colors: ['#2E93fA', '#66DA26', '#546E7A', '#E91E63'],
           useSeriesColors: false
         },
-        position: "bottom"
+        position: "right"
       },
       responsive: [
         {
