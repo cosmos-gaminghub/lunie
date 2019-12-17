@@ -3,7 +3,8 @@ import config from "src/../config"
 
 export default ({ apollo }) => {
   const USER_PREFERENCES_KEY = `lunie_user_preferences`
-
+  const networkId = localStorage.getItem(`network`)
+  
   const state = {
     developmentMode: config.development, // can't be set in browser
     experimentalMode: config.development, // development mode, can be set from browser
@@ -14,7 +15,13 @@ export default ({ apollo }) => {
     pauseHistory: false,
     history: [],
     address: null, // Current address
-    addresses: [], // Array of previously used addresses
+    addresses: {
+      "cosmos-hub-mainnet": [],
+      "cosmos-hub-testnet": [],
+      "terra-testnet": [],
+      "regen-testnet": [],
+      "livepeer-mainnet": [],
+    }, // Array of previously used addresses
     errorCollection: false,
     analyticsCollection: false,
     cookiesAccepted: undefined,
@@ -107,17 +114,27 @@ export default ({ apollo }) => {
     async persistAddresses(store, { addresses }) {
       localStorage.setItem(`addresses`, JSON.stringify(addresses))
     },
-    async rememberAddress({ state, commit }, { address, sessionType }) {
+    async rememberAddress({ state, commit }, { address, networkId, sessionType }) {
       // Check if signin address was previously used
-      const sessionExist = state.addresses.find(
-        usedAddress => address === usedAddress.address
-      )
+      let sessionExist
+      // console.log('TRIAL', state.addresses[JSON.parse(networkId)])
+      console.log('NETWORKS', JSON.parse(JSON.stringify(state.addresses[JSON.parse(networkId)])))
+      if (networkId) {
+        sessionExist = state.addresses[JSON.parse(networkId)].find(
+          usedAddress => address === usedAddress.address
+        )
+      }
+      console.log('CURRENT STATE OF ADDRESSES', state.addresses)
+      console.log('CURRENT LOCALSTORAGE ADDRESSES', localStorage.addresses)
       // Add signin address to addresses array if was not used previously
       if (!sessionExist) {
-        state.addresses.push({
-          address: address,
-          type: sessionType
-        })
+        // not working T.T
+        if (state.addresses[networkId]) {
+          state.addresses[networkId].push({
+            address: address,
+            type: sessionType
+          })
+        }
         commit(`setUserAddresses`, state.addresses)
       }
     },
@@ -132,7 +149,7 @@ export default ({ apollo }) => {
       commit(`setSignIn`, true)
       commit(`setSessionType`, sessionType)
       commit(`setUserAddress`, address)
-      await dispatch(`rememberAddress`, { address, sessionType })
+      await dispatch(`rememberAddress`, { address, networkId, sessionType })
 
       dispatch(`persistSession`, {
         address,
